@@ -1,28 +1,44 @@
 /* This is a stub for the Library class */
 
 import java.util.Hashtable;
-
+/**
+ * Constructs Librarys that behave like buildings with additional attributes and methods that are specific for a library.
+ */
 public class Library extends Building implements LibraryRequirements{
   private Hashtable<String, Boolean> collection;
 
-
+    /**
+     * Constructor that takes the attributes from building and intializes new attributes that are specifically for Library
+     * @param name name of library (String)
+     * @param address adress of library (String)
+     * @param nFloors number of floors in the library (int)
+     */
     public Library(String name, String address, int nFloors) {
       super(name, address, nFloors);
       this.collection = new Hashtable();
       System.out.println("You have built a library: 📖");
     }
 
+    /**
+     * Method that adds title to the library's collection
+     * @param title title to be added to the collection (String)
+     */
     public void addTitle(String title){
-    if (containsTitle(title)) {
+    if (containsTitle(title)) { //checks if the collection already has this title
       System.out.println(title + " is already in the collection.");
     } else {
-      collection.put(title, true); // true = available
+      collection.put(title, true); // true = available for checkout
       System.out.println(title + " added to the collection.");
       }
     }
-
+    
+    /**
+     * Method that removes title from the library's collection
+     * @param title title to be added to the collection (String)
+     * @return title as a String
+     */
     public String removeTitle(String title){
-    if (!containsTitle(title)) {
+    if (!containsTitle(title)) {//checks to see if the title was even in the collection
       System.out.println(title + " not found in the collection.");
     } else {
       collection.remove(title);
@@ -31,9 +47,13 @@ public class Library extends Building implements LibraryRequirements{
     return title;
     }
 
+    /**
+     * Method that check a title out of the collection
+     * @param title title to be added to the collection (String)
+     */
     public void checkOut(String title){
-    if (containsTitle(title)) {
-      if (isAvailable(title)) {
+    if (containsTitle(title)) { //checks that the collection has the title
+      if (isAvailable(title)) { //checks if the title has already been checked out
         collection.put(title, false);
         System.out.println(title + " has been checked out.");
       } else {
@@ -44,9 +64,13 @@ public class Library extends Building implements LibraryRequirements{
     }
     }
 
+    /**
+     * Method that return a book to the collection
+     * @param title title to be added to the collection (String)
+     */
     public void returnBook(String title){
-    if (containsTitle(title)) {
-      if (!isAvailable(title)) {
+    if (containsTitle(title)) {//checks if the title is in the collection
+      if (!isAvailable(title)) {//checks if the book is checked out
         collection.put(title, true);
         System.out.println(title + " has been returned.");
       } else {
@@ -57,16 +81,26 @@ public class Library extends Building implements LibraryRequirements{
     }
     }
 
+    /**
+     * Method that checks if the collection contains a title
+     * @param title title to be added to the collection (String)
+     * @return boolean: true if the collection contains the title
+     */
     public boolean containsTitle(String title){
     return collection.containsKey(title);
     }
 
+    /**
+     * Method that checks if the title is available for checkout in the collection
+     * @param title title to be added to the collection (String)
+     * @return boolean: true if the title is title is in the collection and available for checkout
+     */
     public boolean isAvailable(String title){
-    if (!collection.containsKey(title)) {
+    if (!collection.containsKey(title)) {//checks if the title is in the collection
         System.out.println(title + " is not in the collection.");
         return false;
     }
-    boolean available = collection.get(title);
+    boolean available = collection.get(title);//checks if it is (title, true) i.e. available for checkout
     if (available) {
         System.out.println(title + " is available.");
         return true;
@@ -76,9 +110,11 @@ public class Library extends Building implements LibraryRequirements{
     }
     }
 
-
+    /**
+     * Method that prints all the titles in the collection
+     */
     public void printCollection(){
-    if (collection.isEmpty()) {
+    if (collection.isEmpty()) {//checks if there are any titles in the collection
       System.out.println("The library collection is empty.");
     } else {
       System.out.println("\nLibrary Collection:");
@@ -89,6 +125,10 @@ public class Library extends Building implements LibraryRequirements{
     }
     }
   
+    /**
+     * Main section for testing code
+     * @param args
+     */
     public static void main(String[] args) {
       Library Josten = new Library("Josten", "Mendall Hall", 3);
       
