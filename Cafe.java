@@ -15,14 +15,23 @@ public class Cafe extends Building implements CafeRequirements{
     }
 
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
-        //this.nCoffeeOunces
-        System.out.println("Here is your " + size + "coffee with " + nSugarPackets + " sugar packets and " + nCreams + "creams.");
+        this.nCoffeeOunces -= size;
+        this.nSugarPackets -= nSugarPackets;
+        this.nCreams -= nCreams;
+        this.nCups -= 1;
+        System.out.println("Here is your " + size + "oz coffee with " + nSugarPackets + " sugar packets and " + nCreams + " creams.");
+    }
+
+    public String toString(){
+        return this.name + " has " + this.nCoffeeOunces + " coffee ounces, " + this.nSugarPackets + " sugar packets, " + this.nCreams + " creams, and " + this.nCups + " cups.";
     }
 
 
     
     public static void main(String[] args) {
-        new Cafe();
+        Cafe Compass = new Cafe("Compass", "Neilson Library", 6, 500, 200, 100, 100);
+        Compass.sellCoffee(12, 2, 1);
+        System.out.println(Compass);
     }
     
 }
