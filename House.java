@@ -43,8 +43,9 @@ public class House extends Building implements HouseRequirements{
   public void moveIn(Student s){
     if(isResident(s)){ //checks if student is already a resident
         System.out.println(s + " is already a resident of this house"); 
-    }else{
-    residents.add(s);}
+    } else{
+    residents.add(s);
+    }
   }
 
   /**
@@ -56,7 +57,8 @@ public class House extends Building implements HouseRequirements{
         return s;
     } else{
     residents.remove(s);
-    return s;}
+    return s;
+  }
   } 
   
   /**
@@ -66,7 +68,7 @@ public class House extends Building implements HouseRequirements{
     if(residents.contains(s)){
       System.out.println("Student " + s + " IS in residence");
       return true;
-    }else{
+    } else{
       System.out.println("Student " + s + " IS NOT in residence");
       return false;
     }

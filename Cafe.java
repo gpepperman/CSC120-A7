@@ -33,11 +33,17 @@ public class Cafe extends Building implements CafeRequirements{
      * @param nCreams how many creams in the cup of coffee (int)
      */
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
+        if(this.nCoffeeOunces >= size && this.nSugarPackets >= nSugarPackets &&
+        this.nCreams >= nCreams &&
+        this.nCups >= 1){
         this.nCoffeeOunces -= size;
         this.nSugarPackets -= nSugarPackets;
         this.nCreams -= nCreams;
         this.nCups -= 1;
         System.out.println("Here is your " + size + "oz coffee with " + nSugarPackets + " sugar packets and " + nCreams + " creams.");
+        } else{
+            System.out.println("Not enough resources for your " + size + "oz coffee with " + nSugarPackets + " sugar packets and " + nCreams + " creams.");
+        }
     }
 
     /**
